@@ -12,6 +12,10 @@
 <body>
     <script src="config.js"></script>
     <script src="cliente.js"></script>
+    <div class="formulario">
+        <input type="text">
+        <button>Buscar</button>
+    </div>
 
     <div class="titulo"></div>
     <div class="contenedor"></div>
@@ -31,5 +35,12 @@
         </div>
         <div id="lado-derecho"></div>
     </div> -->
+    <script>
+        $('button').click(function() {
+            if(!consultarInfraccion($('input').val())){
+                $('.contenedor *').remove();
+            }
+        });
+    </script>
 </body>
 </html>
