@@ -1,13 +1,57 @@
-.contenedor{
-    border: solid black;
-    background-color: aquamarine;
+*{
+    margin:0;
+    padding: 0;
+}
+body{
+    min-height: 100vh;
     display: flex;
+    flex-direction: column;
+    background-color: lightblue;
 }
-.contenedor div{
-    padding: 10px;
-    background-color: blue;
-    margin: 10px;
+
+
+.lado-derecho{
+    margin: auto;
+    background-color: gray;
+    text-align: center;
 }
-/* .contenedor div:nth-child(1){
+.header{
+    padding-top: 15px;
+    background-color: yellow;
+    text-align: center;
+}
+.links{
+}
+.links a{
+    display: inline-block;
+    padding: 10px 15px;
+}
+
+
+.buttonUnselected{
+    background-color: rosybrown;
+}
+.buttonSelected{
+    background-color: lightblue;
+}
+
+
+
+/*------------------- FIX bootstrap----------------- */
+.container-fluid{
     background-color: red;
-} */
+    padding-top: 30px;
+    height: 86.5vh;
+}
+.form-group{
+    background-color: blue;
+    padding: 10px;
+}
+.form-group * {
+    margin-top: 5px;
+}
+
+.contenido{
+    background-color: orange;
+}
+

@@ -1,6 +1,6 @@
 var heroku = "https://infraccionesya.herokuapp.com/api";
-var local = "http://localhost:5000/api/";
-
+var urlinfracciones = '/infracciones/';
 var Config = {
     url: heroku
+
 }

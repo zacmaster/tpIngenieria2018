@@ -5,42 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="estilos.css">
     <script src="jquery.js"></script>
-    <!-- <script src="navegacion.js"></script> -->
-</head>
-<body>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="estilos.css">
     <script src="config.js"></script>
     <script src="cliente.js"></script>
-    <div class="formulario">
-        <input type="text">
-        <button>Buscar</button>
-    </div>
+    <script src="consultaAjax.js"></script>
+    <script src="navegacion.js"></script>
 
-    <div class="titulo"></div>
-    <div class="contenedor"></div>
-    <!-- <div class="contenedor">
-        <div>
-            <form action="">
-                <div>
-                    <input type="text">
-                </div>
-                <div>
-                    <button id="buscar">Buscar</button>
-                </div>
-                <div>
-                    <button>Acceso personal de depósitos</button>
-                </div>
-            </form>
+
+</head>
+<body>
+    <div class="header">
+        <h2>Infracciones Ya!</h2>
+        <div class="links">
+            <a href="#" id="btnBuscarInfraccion" class="botonUnselected">Buscar Infracción</a>
+            <a href="" id="btnDepositos" class="botonUnselected">Nuestros depósitos</a>
+            <a href="" id="btnGruas" class="botonUnselected">Ubicación grúas</a>
         </div>
-        <div id="lado-derecho"></div>
-    </div> -->
+    </div>
+    <div class="contenedorVistas"></div>
     <script>
-        $('button').click(function() {
-            if(!consultarInfraccion($('input').val())){
-                $('.contenedor *').remove();
-            }
+        function cargarVista1(){
+            configuracionVistas('vista1.html', '#btnBuscarInfraccion')
+        }
+        $(document).ready(function(){
+            cargarVista1();
         });
+        $('btnBuscarInfraccion').click(function(){
+            cargarVista1();
+        });
+
+        function configuracionVistas(nombreVista, idButton){
+            $('.contenedorVistas').load(nombreVista);
+            $('.links a').addClass('buttonUnselected');
+            $(idButton).removeClass('buttonUnselected').addClass('buttonSelected');
+        }
     </script>
 </body>
 </html>
