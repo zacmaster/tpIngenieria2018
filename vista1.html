@@ -1,54 +1,18 @@
-<style>
-    .contenedorBotonesBuscarPatente{
-        text-align: center;
-        padding: 10px 0px;
-    }
-    #lado-izquierdo{
-        background-color: lightblue;
-        border-right: solid 1px #212529;
-        flex: 3;
-    }
-    #lado-derecho{
-        flex: 2;
-    }
-    #vista1 div.contenedor{
-        display: flex;
-        height: 72.5vh;
-    }
-
-    input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: pink;
-    }
-    input::-moz-placeholder { /* Firefox 19+ */
-        font-style: italic !important;
-        color: gray;
-    }
-    input:-ms-input-placeholder { /* IE 10+ */
-        color: pink;
-    }
-    input:-moz-placeholder { /* Firefox 18- */
-        color: pink;
-    }
-
-
-    #cabecera{
-        background-color: #212529;
-        text-align: center;
-        color: white;
-        padding: 10px;
-    }
-</style>
-
-
 <div id="vista1">
     <div class="contenedorBotonesBuscarPatente">
         <label>Ingrese la patente</label>
-        <input type="text" id="inputPatente" placeholder="ABC123" maxlength="6" minlength="6">
+        <input type="text" id="inputPatente" placeholder="ABC123" maxlength="6" minlength="6"/>
         <button class="btn btn-primary">Buscar</button>
     </div>
     <div class="contenedor">
         <div id="lado-izquierdo">
-            <div id="cabecera">Infracciones de ABC123</div>
+            
+        </div>
+        <div id="lado-derecho">2</div>
+    </div>
+</div>
+<script>
+    var tabla = `<div id="cabecera">Infracciones de ABC123</div>
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -90,12 +54,6 @@
                         <td></td>
                     </tr>
                 </tbody>
-            </table>
-        </div>
-        <div id="lado-derecho">2</div>
-    </div>
-</div>
-<script>
-    $(document).ready(function(){
-    });
+            </table>`;
+            
 </script>

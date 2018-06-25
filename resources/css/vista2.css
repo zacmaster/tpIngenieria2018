@@ -1,0 +1,23 @@
+#contenedor-mapa-depositos{
+    margin: auto;
+    margin-top: 50px;
+    width: 80%;
+    height: 450px;
+
+}
+#ajax-spinner{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    z-index: 3; 
+    border-radius: 50%;
+    position: absolute;
+    top: 30%;
+    left: 47%;
+    z-index: -1;
+}
+#ajax-spinner img{
+    display: inline-block;
+    margin: auto;
+}

@@ -1,0 +1,23 @@
+<div id="contenedor-mapa-depositos">
+    <div id="ajax-spinner"><img src="resources/img/spinner_large.gif" alt=""></div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        asyncQuery('https://infraccionesya.herokuapp.com/api/ABC123/infracciones',  callbackDepositos);
+    });
+    $('#ajax-spinner').hide();
+    $(document)
+    .ajaxStart(function(){
+        $('#ajax-spinner').show();
+    })
+    .ajaxStop(function(){
+        $('#ajax-spinner').hide();
+    });
+
+    var mymap = L.map('contenedor-mapa-depositos').setView([51.505, -0.09], 13);
+
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(mymap);
+</script>

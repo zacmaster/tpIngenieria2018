@@ -9,6 +9,10 @@ var callbackInfraccion = function(response){
     else{cargarPatenteNoEncontrada(patente, response)}
 }
 
+var callbackDepositos = function (response) {
+    console.log('Mostrando depósitos');
+  }
+
 function devolverPatente(){
     return 'ABC123';
 }

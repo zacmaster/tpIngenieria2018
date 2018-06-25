@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="jquery.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="resources/jquery/jquery.js"></script>
+    <script src="resources/bootstrap/js/bootstrap.min.js"></script>
     
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="estilos.css">
-    <script src="config.js"></script>
-    <script src="cliente.js"></script>
-    <script src="consultaAjax.js"></script>
-    <script src="navegacion.js"></script>
-
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/css/estilos.css">
+    <link rel="stylesheet" href="resources/css/vista1.css">
+    <link rel="stylesheet" href="resources/css/vista2.css">
+    <link rel="stylesheet" href="resources/leaflet/leaflet.css">
+    <script src="resources/js/config.js"></script>
+    <script src="resources/js/cliente.js"></script>
+    <script src="resources/js/consultaAjax.js"></script>
+    <script src="resources/js/navegacion2.js"></script>
+    <script src="resources/leaflet/leaflet.js"></script>
 
 </head>
 <body>
@@ -22,27 +25,31 @@
         <h2>Infracciones Ya!</h2>
         <div class="links">
             <a href="#" id="btnBuscarInfraccion" class="botonUnselected">Buscar Infracción</a>
-            <a href="" id="btnDepositos" class="botonUnselected">Nuestros depósitos</a>
-            <a href="" id="btnGruas" class="botonUnselected">Ubicación grúas</a>
+            <a href="#" id="btnDepositos" class="botonUnselected">Nuestros depósitos</a>
+            <a href="#" id="btnGruas" class="botonUnselected">Ubicación grúas</a>
         </div>
     </div>
     <div class="contenedorVistas"></div>
     <script>
-        function cargarVista1(){
-            configuracionVistas('vista1.html', '#btnBuscarInfraccion')
-        }
-        $(document).ready(function(){
-            cargarVista1();
-        });
-        $('btnBuscarInfraccion').click(function(){
-            cargarVista1();
-        });
+        cargarVista1();
 
         function configuracionVistas(nombreVista, idButton){
             $('.contenedorVistas').load(nombreVista);
-            $('.links a').addClass('buttonUnselected');
-            $(idButton).removeClass('buttonUnselected').addClass('buttonSelected');
+            $('.links a').removeClass('buttonSelected').addClass('buttonUnselected');
+            $(idButton).addClass('buttonSelected');
         }
+
+
+        
+        function cargarVista1(){configuracionVistas('vista1.html', '#btnBuscarInfraccion')}
+        function cargarVista2(){configuracionVistas('vista2.html', '#btnDepositos')}
+        function cargarVista3(){configuracionVistas('vista3.html', '#btnGruas')}
+
+        $('#btnBuscarInfraccion').click(function(){ cargarVista1();});
+        $('#btnDepositos').click(function(){ cargarVista2(); });
+        $('#btnGruas').click(function(){ cargarVista3(); });
+
+
     </script>
 </body>
 </html>
