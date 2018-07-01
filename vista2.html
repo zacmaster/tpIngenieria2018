@@ -3,8 +3,29 @@
 </div>
 
 <script>
+    var depositos = [];
+    var callbackDepositos = function (response) {
+        console.log('Mostrando depósitos');
+        var cache = response;
+        $(document).ready(function (){
+            cache.depositos.forEach(element => {
+                depositos.push(element);
+            });
+            dibujarDepositos();
+        });
+        // console.log(response);
+    }
+
+    function dibujarDepositos(){
+        depositos.forEach(element => {
+            console.log(element);
+        });
+        var a = depositos[1].ubicacion.lat;
+        var b = depositos[1].ubicacion.lon;
+        mymap.setView([a,b],15);
+    }
     $(document).ready(function(){
-        asyncQuery('https://infraccionesya.herokuapp.com/api/ABC123/infracciones',  callbackDepositos);
+        asyncQuery('https://infraccionesya.herokuapp.com/api/depositos',  callbackDepositos);
     });
     $('#ajax-spinner').hide();
     $(document)
@@ -15,9 +36,16 @@
         $('#ajax-spinner').hide();
     });
 
+
+
     var mymap = L.map('contenedor-mapa-depositos').setView([51.505, -0.09], 13);
 
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mymap);
+
+     // Agregamos el control para seleccionar Layers al mapa
+    var layersControl = L.control.layers({
+      "Base": baseLayer
+    });
 </script>

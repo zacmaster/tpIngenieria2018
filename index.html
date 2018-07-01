@@ -18,6 +18,8 @@
     <script src="resources/js/consultaAjax.js"></script>
     <script src="resources/js/navegacion2.js"></script>
     <script src="resources/leaflet/leaflet.js"></script>
+    <script src="resources/js/vista/DOMManipulation.js"></script>
+    <script src="resources/js/controlador/controlador.js"></script>
 
 </head>
 <body>
@@ -30,26 +32,5 @@
         </div>
     </div>
     <div class="contenedorVistas"></div>
-    <script>
-        cargarVista1();
-
-        function configuracionVistas(nombreVista, idButton){
-            $('.contenedorVistas').load(nombreVista);
-            $('.links a').removeClass('buttonSelected').addClass('buttonUnselected');
-            $(idButton).addClass('buttonSelected');
-        }
-
-
-        
-        function cargarVista1(){configuracionVistas('vista1.html', '#btnBuscarInfraccion')}
-        function cargarVista2(){configuracionVistas('vista2.html', '#btnDepositos')}
-        function cargarVista3(){configuracionVistas('vista3.html', '#btnGruas')}
-
-        $('#btnBuscarInfraccion').click(function(){ cargarVista1();});
-        $('#btnDepositos').click(function(){ cargarVista2(); });
-        $('#btnGruas').click(function(){ cargarVista3(); });
-
-
-    </script>
 </body>
 </html>

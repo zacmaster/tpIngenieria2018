@@ -1,16 +1,21 @@
+@font-face {
+    font-family: Varela;
+    src: url(../fonts/Varela_Round/VarelaRound-Regular.ttf);
+}
+
 .contenedorBotonesBuscarPatente{
     text-align: center;
     padding: 10px 0px;
 }
 #lado-izquierdo{
     background-color: lightblue;
-    border-right: solid 1px #212529;
+    /* border-right: solid 1px #212529; */
     flex: 3;
 }
 #lado-derecho{
     flex: 2;
 }
-#vista1 div.contenedor{
+#vista1 div.contenedor div.contenedor-resultado{
     display: flex;
     height: 72.5vh;
 }
@@ -29,10 +34,47 @@ input:-moz-placeholder { /* Firefox 18- */
     color: pink;
 }
 
+.encontrado{
+    display: none;
 
+}
 #cabecera{
     background-color: #212529;
     text-align: center;
     color: white;
     padding: 10px;
+}
+
+.noEncontrado{
+    display: none;
+    text-align: center;
+    padding: 50px;
+}
+#dibujo-patente{
+    background-color: darkblue;
+    font-weight: bold;
+    font-family: Varela;
+    color: white;
+    font-size: 80px;
+    border-radius: 15px;
+    width: 350px;
+    margin: auto;
+    transform: rotate(-15dg);
+    -ms-transform: rotate(-15deg); /* IE 9 */
+    -webkit-transform: rotate(-15deg); /* Safari 3-8 */
+    margin-top: 50px;
+    display: flex;
+
+}
+.circulo{
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: white;
+    margin: auto;
+}
+#titulo-patente{
+    font-family: Varela;
+    color: darkblue;
+    font-size: 30px;
 }
