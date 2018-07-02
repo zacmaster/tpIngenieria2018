@@ -1,8 +1,8 @@
-$(document).ready(function () {
-    new Promise(function (resolve, reject) {
-        resolve(cargarVista1());
-    }).then(console.log("Hola mundo"));
+new Promise(function (resolve, reject) {
+    
 });
+
+
 
 
 // let miPrimeraPromise = new Promise((resolve, reject) => {

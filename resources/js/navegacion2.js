@@ -71,6 +71,4 @@ function agregarListado(respuesta){
     });
 }
 
-$(document).ready(function(){
-    buscarInfraccion();
-});
+// buscarInfraccion();
