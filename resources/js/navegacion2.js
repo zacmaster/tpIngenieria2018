@@ -27,8 +27,7 @@ function consultarInfraccion(patente){
 }
 
 function quitarResultados(){
-    $('button').click(function() {
-    });
+    
 }
 
 function buscarInfraccion(){

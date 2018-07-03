@@ -2,7 +2,7 @@ $.ajax({
     url: 'https://infraccionesya.herokuapp.com/api/depositos',
     cache: false,
     success: function (data) {
-        if($('#contenedor-mapa-depositos').children().length < 3){
+        if($('#vista2').children().length < 4){
             $('#ajax-spinner').hide();
             callbackDepositos(data);
         }
@@ -10,7 +10,9 @@ $.ajax({
 });
 
 var depositos = [];
+
 var callbackDepositos = function (response) {
+    
     var cache = response;
     cache.depositos.forEach(element => {
         depositos.push(element);
@@ -19,7 +21,6 @@ var callbackDepositos = function (response) {
 }
 
 var depositoIcon = L.icon({
-    
     iconUrl: 'resources/leaflet/images/depositoMarker.png',
 
     iconSize:     [38, 65], // size of the icon
@@ -30,7 +31,8 @@ var depositoIcon = L.icon({
     
 
 function dibujarDepositos(){
-    var mymap = L.map('contenedor-mapa-depositos').setView([51.505, -0.09], 13);
+
+    var mymap = L.map('vista2').setView([51.505, -0.09], 13);
     
     var baseLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -45,6 +47,7 @@ function dibujarDepositos(){
     function clickZoom(e) {
         mymap.setView(e.target.getLatLng(),15);
     }
+    
     depositos.forEach(deposito => {
         var p = L.marker([deposito.ubicacion.lat,deposito.ubicacion.lon],{icon: depositoIcon});
         var etiqueta =  '"' + deposito.nombre + '"' +
@@ -54,3 +57,4 @@ function dibujarDepositos(){
         p.addTo(mymap).bindPopup(etiqueta).on('click', clickZoom);
     });
 }
+    

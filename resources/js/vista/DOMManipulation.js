@@ -1,22 +1,23 @@
-function configuracionVistas(nombreVista, idButton){
-    $('.contenedorVistas').load(nombreVista);
+function configuracionVistas(numeroVista, idButton){
+    $('.contenedorVistas').html('');
+    $('.contenedorVistas').load('vista' + numeroVista + '.html');
+    
     $('.links a').removeClass('buttonSelected').addClass('buttonUnselected');
     $(idButton).addClass('buttonSelected');
 
 }
 
-function cargarVista1(){
-    configuracionVistas('vista1.html', '#btnBuscarInfraccion');
-    clickNavegacion();
-    $('.encontrado').hide();
-}
-function cargarVista2(){configuracionVistas('vista2.html', '#btnDepositos')}
-function cargarVista3(){configuracionVistas('vista3.html', '#btnGruas')}
+function cargarVista1(){configuracionVistas('1', '#btnBuscarInfraccion')}
+function cargarVista2(){configuracionVistas('2', '#btnDepositos')}
+function cargarVista3(){configuracionVistas('3', '#btnGruas')}
 
 function clickNavegacion() {
     $('#btnBuscarInfraccion').click(function(){ cargarVista1()});
     $('#btnDepositos').click(function(){ cargarVista2()});    
     $('#btnGruas').click(function(){ cargarVista3(); });
-  }
+}
+
+clickNavegacion();
+cargarVista1();
 
 
