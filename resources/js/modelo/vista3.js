@@ -1,18 +1,12 @@
 var estadosGrua = [];
 var posicionesGruas = [];
 var gruas = [];
+var mapV3;
 
 var cantGruas = 0;
 var urlEstados = 'https://infraccionesya.herokuapp.com/api/estadosGruas/';
 var urlGruas = 'https://infraccionesya.herokuapp.com/api/gruas/';
 	
-// var map = createMap('mapid');
-// var drawer = new Drawer();
-// var drawGrua = function(grua) {
-//     drawer.drawTowTruckInMap(grua, map);
-// }
-
-
 
 
 function cargarEstados(){
