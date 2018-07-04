@@ -94,10 +94,7 @@ function dibujarMapa(){
     }
 }
 
-cargarEstados();
-cargarPosicionesGruas();
-cargarGruas();
-dibujarMapa();
+
 
 
 

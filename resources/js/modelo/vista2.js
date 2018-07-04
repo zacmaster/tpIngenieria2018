@@ -1,23 +1,25 @@
-$.ajax({
-    url: 'https://infraccionesya.herokuapp.com/api/depositos',
-    cache: false,
-    success: function (data) {
-        if($('#vista2').children().length < 4){
-            $('#ajax-spinner').hide();
-            callbackDepositos(data);
+function requestDepositos(idMapContainer){
+    $.ajax({
+        url: 'https://infraccionesya.herokuapp.com/api/depositos',
+        cache: false,
+        success: function (data) {
+            if($("#" + idMapContainer).children().length < 4){
+                $('#ajax-spinner').hide();
+                callbackDepositos(data,idMapContainer);
+            }
         }
-    }
-});
+    });
+}
 
 var depositos = [];
 
-var callbackDepositos = function (response) {
+var callbackDepositos = function (response,idMapContainer) {
     
     var cache = response;
     cache.depositos.forEach(element => {
         depositos.push(element);
     });
-    dibujarDepositos();
+    dibujarDepositos(idMapContainer);
 }
 
 var depositoIcon = L.icon({
@@ -30,9 +32,13 @@ var depositoIcon = L.icon({
 
     
 
-function dibujarDepositos(){
+function dibujarDepositos(idMapContainer){
+    console.log('idMapContainer');
+    
+    console.log(idMapContainer);
+    
 
-    var mymap = L.map('vista2').setView([51.505, -0.09], 13);
+    var mymap = L.map(idMapContainer).setView([51.505, -0.09], 13);
     
     var baseLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -57,4 +63,4 @@ function dibujarDepositos(){
         p.addTo(mymap).bindPopup(etiqueta).on('click', clickZoom);
     });
 }
-    
+

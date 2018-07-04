@@ -1,5 +1,5 @@
 <style>
-    #contenedor-mapa-gruas{
+    #vista3{
         margin: auto;
         width: 80%;
         height: 480px;
@@ -7,7 +7,7 @@
     }
     #contenedor-mapa-gruas div:first-child{
         text-align: center;
-        color: white;
+        /* color: white; */
         margin-top: 15px;
     }
     #mapa-gruas{
@@ -20,5 +20,10 @@
     <div><h3>Ubicación de las grúas en tiempo real</h3></div>
     <div id="vista3"></div>
 </div>
-<script src="resources/js/modelo/grua.js"></script>
-<script src="resources/js/modelo/vista3.js"></script>
+<script>
+    requestDepositos('vista3');
+    cargarEstados();
+    cargarPosicionesGruas();
+    cargarGruas();
+    dibujarMapa();
+</script>
