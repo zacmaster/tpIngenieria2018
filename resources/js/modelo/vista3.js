@@ -13,17 +13,7 @@ var urlGruas = 'https://infraccionesya.herokuapp.com/api/gruas/';
 // }
 
 
-var callSincronico = function (url, callback) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", url, false);
-    xhttp.send();
 
-    if (xhttp.status === 200) {
-        var resObj = JSON.parse(xhttp.responseText)
-        return resObj;
-    }
-    return null;
-}
 
 function cargarEstados(){
     var estados = callSincronico(urlEstados);

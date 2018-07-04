@@ -10,7 +10,7 @@
                 <div id="titulo-patente">No se encontraron infracciones para la patente</div>
                 <div id="dibujo-patente">
                     <div class="circulo"></div>
-                    <div>ABC123</div>
+                    <div id="patenteLabel"></div>
                     <div class="circulo"></div>
                 </div>
             </div>
@@ -65,4 +65,9 @@
         </div>
     </div>
 </div>
-<script src="resources/js/modelo/vista1.js"></script>
+<script>
+    // var x = callSincronico('https://infraccionesya.herokuapp.com/api/tiposInfraccion/');
+    // console.log(x.tipos);
+    consultarInfraccion('abc122');
+
+</script>
