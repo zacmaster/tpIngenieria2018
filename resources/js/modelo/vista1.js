@@ -7,7 +7,7 @@ function requestTiposInfraccion(url){
     return ;
 }
 
-function cargarTiposInfraccion(urlTiposInfraccion){
+function cargarTiposInfraccion(url){
     var response =  callSincronico(url);
     response.tipos.forEach(e => {
         tiposInfraccion.push(e.descripcion);
@@ -44,25 +44,9 @@ function callbackInfraccion(response){
     else{
         console.log('con infracciones');
         cargarListadoInfracciones(response);
-        console.log(response);
     }
     
 }
-
-
-// var callbackInfraccion = function(response){
-//     if(response.length === 0) cargarPatenteNoEncontrada(patente);
-//     else{
-//         var cache = [];
-//         response.infracciones.forEach(element => {
-//             cache.push(element); });
-            
-//         response = cache;
-//         var patente = devolverPatente(response);
-//         if (response.length > 0){cargarListadoInfracciones(patente, response)}
-//         else{cargarPatenteNoEncontrada(patente, response)}
-//     }
-// }
 
 function devolverPatente(){
     return patente;
@@ -76,31 +60,50 @@ function cargarPatenteNoEncontrada(response){
     var patente = response.patente;
     console.log('patente'+ patente + 'no encontrada');
     $('#patenteLabel').append(patente);
+    $('.encontrado').hide();
     $('.noEncontrado').show();
 
 }
 
-function cargarListadoInfracciones(patente,respuesta){
-    $('.lado-derecho div.contenido').load('listadoInfracciones.html');
-    $('#titulo-patente').val('Infracciones para la patente nro ' + patente);
-    agregarListado(respuesta);
+function cargarListadoInfracciones(response){
+    cargarTiposInfraccion(urlTiposInfraccion);
+    $('.noEncontrado').hide();
+    
+    $('.encontrado').show();
+    $('#lado-derecho').show();
+
+    $('#titulo-patente').val('Infracciones para la patente nro ' + response.patente);
+    
+    response.infracciones.forEach(e => {
+        e.tipoInfraccion = tiposInfraccion[e.tipoInfraccion]; //Guardo el nombre de la infraccion
+        infraccionesTemp.push(e);
+    });
+
+    console.log('infraccionesTemp');
+    
+    console.log(infraccionesTemp);
+    
+    agregarListado(infraccionesTemp);
 }
 
 
 function agregarListado(respuesta){
-    console.log(respuesta);
-    respuesta.forEach(o => {
+    console.log('agregarListado');
+    
+    
+    let cont = 1;
+    respuesta.forEach(i => {
+        let fila = '<tr><th scope="row">' + i.id + '</th><td>' +
+            i.tipoInfraccion + '</td><td>' +
+            i.fechaHoraRegistro + '</td><td>' +
+            i.fechaHoraActualizacion + '</td><td>' +
+            i.montoAPagar + '</td><td>' +
+            i.direccionRegistrada + '</td><td>' +
+            i.existeAcarreo + '</td></tr>';
+
+        cont += 1;
         
-        let tag = '<div>' +
-        'Infracción: ' + o.id + '<br>' +
-        o.fechaHoraRegistro + '<br>' +
-        o.fechaHoraActualizacion + '<br>' +
-        o.direccionRegistrada + '<br>' +
-        o.tipoInfraccion + '<br>' +
-        o.montoAPagar + '<br>' +
-        o.existeAcarreo + '</div><br>';
-        
-        $('#infracciones-contenedor').append(tag);
+        $('tbody').append(fila);
     });
 }
 

@@ -14,6 +14,7 @@
 }
 #lado-derecho{
     flex: 2;
+    border: solid 1px black;
 }
 #vista1 div.contenedor div.contenedor-resultado{
     display: flex;
@@ -36,7 +37,9 @@ input:-moz-placeholder { /* Firefox 18- */
 
 .encontrado{
     display: none;
-
+}
+.encontrado .contenedor{
+    display: flex;
 }
 #cabecera{
     background-color: #212529;
@@ -77,4 +80,7 @@ input:-moz-placeholder { /* Firefox 18- */
     font-family: Varela;
     color: darkblue;
     font-size: 30px;
+}
+table{
+    border: solid 1px black;
 }
