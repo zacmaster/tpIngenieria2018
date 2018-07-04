@@ -18,6 +18,7 @@ body{
 .header{
     padding-top: 15px;
     background-color: yellow;
+    background-color: red;
     text-align: center;
 }
 .links a{
