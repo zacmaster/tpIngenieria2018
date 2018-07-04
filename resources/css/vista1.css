@@ -82,5 +82,9 @@ input:-moz-placeholder { /* Firefox 18- */
     font-size: 30px;
 }
 table{
-    border: solid 1px black;
+    height: 100%;
+}
+td, th{
+    background-color: antiquewhite;
+    border-bottom: solid 1px #212529;
 }

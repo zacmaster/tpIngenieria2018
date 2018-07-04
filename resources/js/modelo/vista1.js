@@ -1,11 +1,9 @@
 var tiposInfraccion = [];
 var infraccionesTemp = [];
+var acarreoTemp;
+var requestActual;
 
 urlTiposInfraccion = 'https://infraccionesya.herokuapp.com/api/tiposInfraccion/';
-
-function requestTiposInfraccion(url){
-    return ;
-}
 
 function cargarTiposInfraccion(url){
     var response =  callSincronico(url);
@@ -16,13 +14,10 @@ function cargarTiposInfraccion(url){
 
 
 
-// var patente = "";
-// buscarInfraccion(patente);
 function buscarInfraccion(patente){
     $('button').click(function(){
         patente = $('#inputPatente').val();
-        console.log(patente);
-        // $('#inputPatente').val('');
+        $('#inputPatente').val('');
         consultarInfraccion(patente);
     });
 }
@@ -90,30 +85,37 @@ function cargarListadoInfracciones(response){
 function agregarListado(respuesta){
     console.log('agregarListado');
     
-    
-    let cont = 1;
     respuesta.forEach(i => {
         let fila = '<tr><th scope="row">' + i.id + '</th><td>' +
             i.tipoInfraccion + '</td><td>' +
             i.fechaHoraRegistro + '</td><td>' +
             i.fechaHoraActualizacion + '</td><td>' +
             i.montoAPagar + '</td><td>' +
-            i.direccionRegistrada + '</td><td>' +
-            i.existeAcarreo + '</td></tr>';
+            i.direccionRegistrada + '</td><td>';
+        if(i.existeAcarreo == true){
+            fila += '<button class="btn btn-info" id="btn_' + i.id +'">Ver</button></td></tr>';
+            $('tbody').append(fila);
+            $('#btn_' + i.id).click(function(){
+                agregarDepositoInfraccion(i.id);
+            });
+        }
+        else{
+            fila += ' </td></tr>';
+            $('tbody').append(fila);
+        }
 
-        cont += 1;
         
-        $('tbody').append(fila);
     });
 }
 
-function dibujarDeposito(idMapContainer, deposito){
+function agregarDepositoInfraccion(id){
+    acarreoTemp = callSincronico('https://infraccionesya.herokuapp.com/api/ABC123/acarreos/' + id);
     
-    console.log(idMapContainer);
-    
+    dibujarDeposito('lado-derecho',acarreoTemp.acarreo.deposito);
+}
 
+function dibujarDeposito(idMapContainer, deposito){
     var mymap = L.map(idMapContainer).setView([51.505, -0.09], 13);
-    
     var baseLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mymap);
@@ -133,5 +135,12 @@ function dibujarDeposito(idMapContainer, deposito){
                     '<br>Abierto de ' + deposito.horarios +
                     '<br>Dir. ' + deposito.direccion +    
                     '<br> Tel. ' + deposito.telefono;
-    p.addTo(mymap).bindPopup(etiqueta).on('click', clickZoom);
+    p.addTo(mymap).bindPopup(etiqueta);
+}
+
+function vaciarCache(){
+    tiposInfraccion = null;
+    infraccionesTemp = null;
+    acarreoTemp = null;
+    requestActual = null;
 }
