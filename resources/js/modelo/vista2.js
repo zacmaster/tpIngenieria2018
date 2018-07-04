@@ -1,4 +1,4 @@
-var mapv2;
+var mapa;
 var depositos = [];
 var mapContainer;
 
@@ -37,8 +37,8 @@ var depositoIcon = L.icon({
 
 function dibujarMapaV2(contenedor){
     
-    mapv2 = createMap(contenedor);
-    dibujarDepositos(mapv2);
+    mapa = createMap(contenedor);
+    dibujarDepositos(mapa);
 }
 
 function dibujarDepositos(mymap){

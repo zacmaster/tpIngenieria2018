@@ -1,7 +1,6 @@
 var estadosGrua = [];
 var posicionesGruas = [];
 var gruas = [];
-var mapV3;
 
 var cantGruas = 0;
 var urlEstados = 'https://infraccionesya.herokuapp.com/api/estadosGruas/';
@@ -57,25 +56,25 @@ var gruaIcon = L.icon({
 });
 
 
-function dibujarMapa(){
+function dibujarGruas(){
 
-    // var mymap = L.map('vista3').setView([51.505, -0.09], 13);
-
-    var mymap = L.map('vista3').setView([gruas[0].posicionesYEstado[0].latitud,
+    mapa.setView([gruas[0].posicionesYEstado[0].latitud,
         gruas[0].posicionesYEstado[0].longitud],14);
+
+    var gruasLayer = L.layerGroup().addTo(mapa);
+    mapa.layersControl.addOverlay(gruasLayer, 'Gruas');
+    gruas.forEach(e => {
+        var p = L.marker(   [e.posicionesYEstado[0].latitud,
+                            e.posicionesYEstado[0].longitud],
+                            {icon: gruaIcon}
+        );
+        gruasLayer.addLayer(p);
+    });
+    // var p = L.marker([gruas[0].posicionesYEstado[1].latitud,
+    //     gruas[0].posicionesYEstado[1].longitud],{icon: gruaIcon});
+
+    // gruasLayer.addLayer(p);
     
-    var baseLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(mymap);
-    
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(mymap);
-    
-    
-    function clickZoom(e) {
-        mymap.setView(e.target.getLatLng(),15);
-    }
 }
 
 
@@ -83,12 +82,3 @@ function dibujarMapa(){
 
 
 
-// // Creamos una carrera
-// var race1K = new Race("1K", map);
-
-// for (let index = 0; index < cantGruas; index++) {
-//     drawGrua(gruas[index]);
-//     race1K.addRunner(gruas[index]);
-// }
-// race1K.start();
-// console.log(gruas);
