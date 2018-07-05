@@ -1,5 +1,5 @@
 function configuracionVistas(numeroVista, idButton){
-    $('.contenedorVistas').html('');
+    $('.contenedorVistas').empty();
     $('.contenedorVistas').load('vista' + numeroVista + '.html');
     
     $('.links a').removeClass('buttonSelected').addClass('buttonUnselected');

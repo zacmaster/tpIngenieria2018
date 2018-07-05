@@ -14,9 +14,9 @@ function cargarTiposInfraccion(url){
 
 
 
-function buscarInfraccion(patente){
+function buscarInfraccion(){
     $('button').click(function(){
-        patente = $('#inputPatente').val();
+        var patente = $('#inputPatente').val();
         $('#inputPatente').val('');
         consultarInfraccion(patente);
     });

@@ -56,26 +56,50 @@ var gruaIcon = L.icon({
 });
 
 
+
+
 function dibujarGruas(){
 
-    mapa.setView([gruas[0].posicionesYEstado[0].latitud,
-        gruas[0].posicionesYEstado[0].longitud],14);
 
     var gruasLayer = L.layerGroup().addTo(mapa);
     mapa.layersControl.addOverlay(gruasLayer, 'Gruas');
-    gruas.forEach(e => {
-        var p = L.marker(   [e.posicionesYEstado[0].latitud,
-                            e.posicionesYEstado[0].longitud],
-                            {icon: gruaIcon}
-        );
-        gruasLayer.addLayer(p);
-    });
-    // var p = L.marker([gruas[0].posicionesYEstado[1].latitud,
-    //     gruas[0].posicionesYEstado[1].longitud],{icon: gruaIcon});
 
-    // gruasLayer.addLayer(p);
+    var arr2 = [];
+    var velocidades = []
+    gruas.forEach(e => {
+        var aux = [];
+        var velocidadesAux = [];
+        for (let index = 0; index < e.posicionesYEstado.length; index++) {
+            var arr = [];
+            arr.push(e.posicionesYEstado[index].latitud);
+            arr.push(e.posicionesYEstado[index].longitud);
+            aux.push(arr);
+            velocidadesAux.push(500);
+
+        }
+        arr2.push(aux);
+        velocidades.push(velocidadesAux);
+    });
     
+    for (let index = 0; index < arr2.length; index++) {
+        
+        var p = L.Marker.movingMarker(arr2[index],velocidades[index], {autostart: true,loop:true, icon: gruaIcon});
+        gruasLayer.addLayer(p);
+    }
+    
+
+
 }
+
+
+
+
+
+
+    //forma automatica.
+var marker = L.Marker.movingMarker([[123123,123123],[123123,123123]],
+    [3000,3000], {autostart: true});
+    
 
 
 
